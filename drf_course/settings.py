@@ -25,10 +25,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_extensions",  # Django Extensions for additional management commands
-    "api",  # Custom API app
-    "rest_framework",  # Django REST Framework
-    "silk",  # Django Silk for profiling
+    "django_extensions",
+    "api",
+    "rest_framework",
+    "silk",
 ]
 
 MIDDLEWARE = [
@@ -114,4 +114,8 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-AUTH_USER_MODEL = "api.User"
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]

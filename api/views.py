@@ -5,7 +5,7 @@ from api.models import Product, Order, OrderItem
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import generics
-
+from rest_framework.permissions import IsAuthenticated
 
 # @api_view(["GET"])
 # def product_list(request):
@@ -38,9 +38,16 @@ class ProductDetailApiView(generics.RetrieveAPIView):
 #     return Response(serializer.data)
 
 
-class OrderListApiView(generics.ListAPIView):
+class UserOrderListApiView(generics.ListAPIView):
     queryset = Order.objects.prefetch_related("items__product")
     serializer_class = OrderSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        if not user.is_authenticated:
+            return Order.objects.none()
+        qs = super().get_queryset()
+        return qs.filter(user=user)
 
 
 @api_view(["GET"])
