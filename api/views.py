@@ -44,8 +44,6 @@ class UserOrderListApiView(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        if not user.is_authenticated:
-            return Order.objects.none()
         qs = super().get_queryset()
         return qs.filter(user=user)
 
