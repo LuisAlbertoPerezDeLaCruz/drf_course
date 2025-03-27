@@ -25,9 +25,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_extensions",
-    "api",
-    "rest_framework",
+    "django_extensions",  # Django Extensions for additional management commands
+    "api",  # Custom API app
+    "rest_framework",  # Django REST Framework
+    "silk",  # Django Silk for profiling
 ]
 
 MIDDLEWARE = [
@@ -38,6 +39,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "silk.middleware.SilkyMiddleware",
 ]
 
 ROOT_URLCONF = "drf_course.urls"
