@@ -1,6 +1,11 @@
 from django.db.models import Max
 from django.shortcuts import get_object_or_404
-from api.serializers import ProductSerializer, OrderSerializer, ProductInfoSerializer
+from api.serializers import (
+    ProductSerializerGet,
+    OrderSerializer,
+    ProductInfoSerializer,
+    ProductSerializerPost,
+)
 from api.models import Product, Order, OrderItem
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -16,8 +21,25 @@ from rest_framework.views import APIView
 
 
 class ProductListApiView(generics.ListAPIView):
+    queryset = Product.objects.exclude(stock=0)  # Exclude products with stock = 0
+    serializer_class = ProductSerializerGet
+
+
+class ProductCreateApiView(generics.CreateAPIView):
+    model = Product
+    serializer_class = ProductSerializerPost
+
+    def create(
+        self, request, *args, **kwargs
+    ):  # Override the create method to add custom behavior
+        print(request.data)  # Debugging line to check incoming data
+        return super().create(request, *args, **kwargs)
+
+
+class ProductCreateListApiView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+    # Include all products for listing
+    serializer_class = ProductSerializerPost
 
 
 # @api_view(["GET"])
@@ -29,7 +51,7 @@ class ProductListApiView(generics.ListAPIView):
 
 class ProductDetailApiView(generics.RetrieveAPIView):
     queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+    serializer_class = ProductSerializerGet
 
 
 # @api_view(["GET"])
