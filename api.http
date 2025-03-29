@@ -23,5 +23,13 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:8000/api/token/refresh/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "refresh": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0MzM0MzIyNSwiaWF0IjoxNzQzMjU2ODI1LCJqdGkiOiIzYzlkODk4MWQ5NTQ0MWY1YmRlMjNlYjAzMWU3ZGExMyIsInVzZXJfaWQiOjJ9.eajARTV8cUDGt3VaWPThcVBysIkqoTdS_JhZOIohy5A"
+}
+
+###
 GET http://localhost:8000/orders/ HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzMjU2NTQ3LCJpYXQiOjE3NDMyNTYyNDcsImp0aSI6ImZmODRmY2RkZTAyODQwOGU4OTYyODgwMDNhNzg2NWVmIiwidXNlcl9pZCI6Mn0.oHnH8GR2dk81fKw18N3Q7tBSBecuNNlsK1cbupoGomU
