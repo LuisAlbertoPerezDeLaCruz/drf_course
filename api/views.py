@@ -1,5 +1,6 @@
 from django.db.models import Max
 from django.shortcuts import get_object_or_404
+from api.filters import ProductFilter
 from api.serializers import (
     ProductSerializerGet,
     OrderSerializer,
@@ -39,6 +40,7 @@ class ProductCreateApiView(generics.CreateAPIView):
 class ProductCreateListApiView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializerGet
+    filterset_class = ProductFilter
 
     def get_permissions(self):
         self.permission_classes = [AllowAny]  # Default permission for GET requests
