@@ -18,8 +18,8 @@ POST http://localhost:8000/api/token/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "joe_doe",
-    "password": "jd_12345678"
+    "username": "admin",
+    "password": "lp_12345678"
 }
 
 ###
@@ -33,3 +33,22 @@ Content-Type: application/json
 ###
 GET http://localhost:8000/orders/ HTTP/1.1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzMjU2NTQ3LCJpYXQiOjE3NDMyNTYyNDcsImp0aSI6ImZmODRmY2RkZTAyODQwOGU4OTYyODgwMDNhNzg2NWVmIiwidXNlcl9pZCI6Mn0.oHnH8GR2dk81fKw18N3Q7tBSBecuNNlsK1cbupoGomU
+
+###
+GET http://localhost:8000/products/15/ HTTP/1.1
+
+###
+DELETE http://localhost:8000/products/14/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzMzAyNTIyLCJpYXQiOjE3NDMyNTkzMjIsImp0aSI6IjI4ZWY0NmVkZTU3MzQxN2FiMWYxYTYwMDRmZTBhZTE5IiwidXNlcl9pZCI6MX0.yIFot3Ziit6G6ZpL8hK9XDUuNDyC5tvTIkQMdqj46tg
+
+###
+PUT http://localhost:8000/products/14/ HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQzMzAwNTgwLCJpYXQiOjE3NDMyNTczODAsImp0aSI6IjNmMGY0NGQ5NDk2ODQzZWI5MGJmMmE4N2FjMDgxZWFiIiwidXNlcl9pZCI6Mn0.95gQKi30Ch3C0jfLQkv4sUkU-3RnmBp6nykvlG0P_QI
+
+{
+    "description": "Amazing New TV 4",
+    "name": "Television 4",
+    "price": "403.00",
+    "stock": 40
+}

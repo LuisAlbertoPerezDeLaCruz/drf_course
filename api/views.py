@@ -38,7 +38,7 @@ class ProductCreateApiView(generics.CreateAPIView):
 
 class ProductCreateListApiView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
-    serializer_class = ProductSerializerPost
+    serializer_class = ProductSerializerGet
 
     def get_permissions(self):
         self.permission_classes = [AllowAny]  # Default permission for GET requests
@@ -55,9 +55,21 @@ class ProductCreateListApiView(generics.ListCreateAPIView):
 #     return Response(serializer.data)
 
 
-class ProductDetailApiView(generics.RetrieveAPIView):
+# class ProductDetailApiView(generics.RetrieveAPIView):
+#     queryset = Product.objects.all()
+#     serializer_class = ProductSerializerGet
+
+
+class ProductDetailApiView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializerGet
+
+    def get_permissions(self):
+        self.permission_classes = [AllowAny]  # Default permission for GET requests
+        if self.request.method in ["PUT", "PATCH", "DELETE"]:
+            # If the request method is POST, require admin permissions
+            self.permission_classes = [IsAdminUser]
+        return super().get_permissions()
 
 
 # @api_view(["GET"])
